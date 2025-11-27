@@ -1,23 +1,23 @@
 {
  "actions": [],
  "allow_rename": 1,
- "creation": "2025-11-25 20:31:40.276034",
+ "creation": "2025-11-27 19:02:02.045199",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "member_name",
+  "full_name",
   "email",
   "phone",
-  "total_debt",
-  "outstanding_books"
+  "address",
+  "outstanding_dues",
+  "debt_limit",
+  "active"
  ],
  "fields": [
   {
-   "fieldname": "member_name",
+   "fieldname": "full_name",
    "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Member Name",
-   "reqd": 1
+   "label": "Full Name"
   },
   {
    "fieldname": "email",
@@ -30,27 +30,36 @@
    "label": "Phone"
   },
   {
-   "default": "0",
-   "fieldname": "total_debt",
-   "fieldtype": "Currency",
-   "in_list_view": 1,
-   "label": "Total Debt",
-   "reqd": 1
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
   },
   {
-   "fieldname": "outstanding_books",
-   "fieldtype": "Table",
-   "label": "outstanding_books",
-   "options": "Member Borrowed Book"
+   "default": "0",
+   "fieldname": "outstanding_dues",
+   "fieldtype": "Currency",
+   "label": "Outstanding Dues"
+  },
+  {
+   "default": "500",
+   "fieldname": "debt_limit",
+   "fieldtype": "Currency",
+   "label": "Debt Limit"
+  },
+  {
+   "default": "0",
+   "fieldname": "active",
+   "fieldtype": "Check",
+   "label": "Active"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-11-25 21:04:26.971455",
+ "modified": "2025-11-27 19:13:28.863585",
  "modified_by": "Administrator",
  "module": "library_management_system",
- "name": "member",
+ "name": "Member",
  "owner": "Administrator",
  "permissions": [
   {

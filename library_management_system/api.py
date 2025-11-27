@@ -130,3 +130,58 @@ def delete_book(name: str):
         return {"status": "success", "deleted": name}
     except Exception as e:
         return {"status": "error", "message": str(e)}
+
+# -------------------------
+#  MEMBER API
+# -------------------------
+
+@frappe.whitelist()
+def create_member(data: str):
+    data = json.loads(data)
+    doc = frappe.get_doc({
+        "doctype": "Member",
+        **data
+    })
+    doc.insert()
+    frappe.db.commit()
+    return {"status": "success", "name": doc.name}
+
+
+@frappe.whitelist()
+def update_member(name: str, data: str):
+    data = json.loads(data)
+    doc = frappe.get_doc("Member", name)
+    for key, value in data.items():
+        doc.set(key, value)
+    doc.save()
+    frappe.db.commit()
+    return {"status": "success", "updated": name}
+
+
+@frappe.whitelist()
+def delete_member(name: str):
+    frappe.delete_doc("Member", name)
+    frappe.db.commit()
+    return {"status": "success", "deleted": name}
+
+
+@frappe.whitelist()
+def get_members():
+    members = frappe.get_all(
+        "Member",
+        fields=["name", "full_name", "email", "outstanding_dues", "debt_limit", "active"]
+    )
+    return members
+
+
+@frappe.whitelist()
+def search_members(query: str):
+    results = frappe.get_all(
+        "Member",
+        or_filters=[
+            ["full_name", "like", f"%{query}%"],
+            ["email", "like", f"%{query}%"]
+        ],
+        fields=["name", "full_name", "email"]
+    )
+    return results
