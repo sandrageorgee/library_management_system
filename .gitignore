@@ -1,7 +1,8 @@
-.DS_Store
 *.pyc
-*.egg-info
+__pycache__/
 *.swp
-tags
-node_modules
-__pycache__
+*.swo
+node_modules/
+*.log
+sites/
+dist/
