@@ -6,14 +6,15 @@
  "engine": "InnoDB",
  "field_order": [
   "section_break_lwjn",
-  "amended_from",
   "member",
   "book",
-  "transaction_type",
+  "type",
   "date_issued",
   "due_date",
   "return_date",
-  "fine_amount"
+  "fine_amount",
+  "amended_from",
+  "transaction_status"
  ],
  "fields": [
   {
@@ -21,21 +22,11 @@
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Book Transaction",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
-  },
-  {
    "fieldname": "member",
    "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Member",
-   "options": "member",
+   "options": "Member",
    "reqd": 1
   },
   {
@@ -44,14 +35,6 @@
    "in_list_view": 1,
    "label": "Book",
    "options": "Book",
-   "reqd": 1
-  },
-  {
-   "fieldname": "transaction_type",
-   "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Type",
-   "options": "Issue\\nReturn",
    "reqd": 1
   },
   {
@@ -72,16 +55,43 @@
    "label": "Return Date"
   },
   {
+   "fetch_from": "amended_from.fine_amount",
+   "fetch_if_empty": 1,
    "fieldname": "fine_amount",
    "fieldtype": "Currency",
    "label": "Fine Amount"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Book Transaction",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "label": "Type",
+   "options": "Issue\nReturn",
+   "reqd": 1
+  },
+  {
+   "fieldname": "transaction_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Transaction Status",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-11-25 21:09:27.640526",
+ "modified": "2025-11-28 17:12:11.073757",
  "modified_by": "Administrator",
  "module": "library_management_system",
  "name": "Book Transaction",
